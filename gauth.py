@@ -17,6 +17,16 @@ else:
     conn = sqlite3.connect('secrets.db')
     c = conn.cursor()
 
+def list_options():
+    c.execute('SELECT * FROM secrets')
+    data = c.fetchall()
+    s = list()
+
+    for o in options:
+        option = "{}) {}".format(str(len(s)), o[0])
+        s.append(option)
+    '\n'.join(s)
+
 def choose_secret():
     options = list()
     names = list()
